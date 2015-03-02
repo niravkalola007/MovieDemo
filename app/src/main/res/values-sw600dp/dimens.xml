@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="navigation_drawer_width">320dp</dimen>
+    <dimen name="appbar_height">64dp</dimen>
+    <dimen name="appbar_half_height">32dp</dimen>
+</resources>
