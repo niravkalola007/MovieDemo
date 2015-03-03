@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustResize"
             android:name=".AddCommentActivity"
             android:label="@string/title_activity_add_comment"
             android:screenOrientation="portrait" >

@@ -50,35 +50,41 @@
     android:layout_height="match_parent">
 
 
-    <EditText
-        android:id="@+id/etShortComment"
-        android:textColor="@color/gray"
-        android:layout_alignParentTop="true"
-        android:textSize="24sp"
-        android:padding="24dp"
-        android:maxLines="2"
-        android:gravity="top|left"
-        android:hint="Add a short comment"
-        android:layout_margin="16dp"
-        android:background="@color/white"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        </EditText>
 
     <RelativeLayout
         android:layout_alignParentBottom="true"
-        android:background="#21a9e1"
-        android:padding="12dp"
+        android:background="@color/white"
+
 
         android:id="@+id/txtSubmitComment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <EditText
+            android:paddingLeft="8dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/etShortComment"
+            android:textColor="@color/gray"
+            android:layout_alignParentTop="true"
+            android:textSize="24sp"
+            android:singleLine="true"
+            android:gravity="top|left"
+            android:hint="Add a short comment"
 
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_toLeftOf="@+id/txtSubmitCommentImage"
+            android:imeOptions="actionDone"
+            android:layout_height="wrap_content">
+            <requestFocus />
+        </EditText>
 <ImageView
+    android:id="@+id/txtSubmitCommentImage"
+    android:layout_alignParentRight="true"
+    android:padding="10dp"
+    android:background="#cccccc"
     android:layout_centerInParent="true"
-    android:background="@drawable/ic_white_check_icon"
+    android:src="@drawable/ic_white_check_icon"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 

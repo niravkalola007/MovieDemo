@@ -1,17 +1,23 @@
 package com.nkdroid.fransandre;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -50,7 +56,7 @@ import java.util.List;
 public class AddCommentActivity extends ActionBarActivity {
 
     private EditText etShortComment;
-    private RelativeLayout txtSubmitComment;
+    private ImageView txtSubmitComment;
     private Toolbar toolbar;
     private MovieDetails movieDetails;
     private ImageView movieImage;
@@ -87,10 +93,45 @@ public class AddCommentActivity extends ActionBarActivity {
             }
         });
         etShortComment= (EditText) findViewById(R.id.etShortComment);
-        txtSubmitComment= (RelativeLayout) findViewById(R.id.txtSubmitComment);
+        etShortComment.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if(etShortComment.getText().toString().toString().length()>0) {
+                    ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(etShortComment.getWindowToken(), 0);
+                    postComment();
+                }
+                return true;
+            }
+        });
+
+        etShortComment.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                if(etShortComment.getText().toString().toString().length()==0){
+                    txtSubmitComment.setBackgroundColor(Color.parseColor("#cccccc"));
+                    txtSubmitComment.setClickable(false);
+                } else {
+                    txtSubmitComment.setBackgroundColor(Color.parseColor("#21a9e1"));
+                    txtSubmitComment.setClickable(true);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        txtSubmitComment= (ImageView) findViewById(R.id.txtSubmitCommentImage);
         txtSubmitComment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(etShortComment.getWindowToken(), 0);
                 postComment();
             }
         });
@@ -200,23 +241,12 @@ public class AddCommentActivity extends ActionBarActivity {
 
                     String responseCode=jsonObject.getString("response_code");
                     if(responseCode.equalsIgnoreCase("201")){
+                        etShortComment.setText("");
                         Toast.makeText(AddCommentActivity.this, jsonObject.getString("response_message"), Toast.LENGTH_LONG).show();
-                        new CountDownTimer(1000, 1000) {
+                        Intent intent = new Intent(AddCommentActivity.this, LinkMoviesList.class);
+                        intent.putExtra("rec_id", jsonObject.getString("response_code"));
+                        startActivity(intent);
 
-                            public void onTick(long millisUntilFinished) {
-
-                            }
-
-                            public void onFinish() {
-                                try {
-                                    Intent intent = new Intent(AddCommentActivity.this, LinkMoviesList.class);
-                                    intent.putExtra("rec_id", jsonObject.getString("response_code"));
-                                    startActivity(intent);
-                                } catch (Exception e){
-                                    e.printStackTrace();
-                                }
-                            }
-                        }.start();
                     } else {
                         Toast.makeText(AddCommentActivity.this, "Error, Please Try again...", Toast.LENGTH_LONG).show();
                     }

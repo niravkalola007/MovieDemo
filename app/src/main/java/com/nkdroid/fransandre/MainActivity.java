@@ -19,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -68,24 +69,9 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        etSearch= (EditText) findViewById(R.id.etSearch);
-        etSearch.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//        etSearch= (EditText) findViewById(R.id.etSearch);
 
-            }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                moviesListAdapter.filter(etSearch.getText().toString().trim());
-                movieList.invalidate();
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
         if (toolbar != null) {
 
             toolbar.setTitle("");
@@ -144,7 +130,26 @@ public class MainActivity extends ActionBarActivity {
                 }
                 moviesListAdapter=new MoviesListAdapter(MainActivity.this,moviesList);
                 movieList.setAdapter(moviesListAdapter);
+                ViewGroup header = (ViewGroup) getLayoutInflater().inflate(R.layout.headerview, movieList, false);
+                movieList.addHeaderView(header);
+                etSearch=(EditText) header.findViewById(R.id.etSearch);
+                etSearch.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        moviesListAdapter.filter(etSearch.getText().toString().trim());
+                        movieList.invalidate();
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
             }
         }.execute();
     }
