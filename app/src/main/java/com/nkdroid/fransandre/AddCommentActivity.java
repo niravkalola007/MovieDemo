@@ -89,6 +89,7 @@ public class AddCommentActivity extends ActionBarActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(etShortComment.getWindowToken(), 0);
                 finish();
             }
         });

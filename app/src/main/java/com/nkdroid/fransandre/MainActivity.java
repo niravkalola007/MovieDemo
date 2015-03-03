@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -129,9 +130,15 @@ public class MainActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
                 moviesListAdapter=new MoviesListAdapter(MainActivity.this,moviesList);
-                movieList.setAdapter(moviesListAdapter);
                 ViewGroup header = (ViewGroup) getLayoutInflater().inflate(R.layout.headerview, movieList, false);
                 movieList.addHeaderView(header);
+                movieList.setAdapter(moviesListAdapter);
+//                movieList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//
+//                    }
+//                });
                 etSearch=(EditText) header.findViewById(R.id.etSearch);
                 etSearch.addTextChangedListener(new TextWatcher() {
                     @Override

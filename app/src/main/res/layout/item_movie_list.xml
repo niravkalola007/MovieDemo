@@ -4,15 +4,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/mainLayout"
     android:orientation="vertical"
-    android:clickable="true"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
 
-    android:background="#494949"
+    android:paddingBottom="16dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
-        android:background="@color/white"
 
+        android:background="@drawable/list_selector_flatcolor"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
