@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
@@ -31,6 +32,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.GsonBuilder;
+import com.nkdroid.fransandre.model.AdvancedSpannableString;
 import com.nkdroid.fransandre.model.AppConstants;
 import com.nkdroid.fransandre.model.ComplexPreferences;
 import com.nkdroid.fransandre.model.MovieDetails;
@@ -52,6 +54,7 @@ import java.util.Locale;
 
 
 public class MainActivity extends ActionBarActivity {
+
 
     private Toolbar toolbar;
     private EditText etSearch;
