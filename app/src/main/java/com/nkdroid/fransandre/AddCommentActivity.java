@@ -245,7 +245,7 @@ public class AddCommentActivity extends ActionBarActivity {
                         etShortComment.setText("");
                         Toast.makeText(AddCommentActivity.this, jsonObject.getString("response_message"), Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(AddCommentActivity.this, LinkMoviesList.class);
-                        intent.putExtra("rec_id", jsonObject.getString("response_code"));
+                        intent.putExtra("rec_id", jsonObject.getString("recommendation_id"));
                         startActivity(intent);
 
                     } else {
