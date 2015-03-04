@@ -67,6 +67,7 @@ import java.util.Locale;
 
 public class LinkMoviesList extends ActionBarActivity {
     private Toolbar toolbar;
+    ArrayList<ListDetail> drawerTitleList;
     private RelativeLayout txtLinkRecommandation;
     private MovieDetails movieDetails;
     private  TextView headerText;
@@ -83,7 +84,9 @@ public class LinkMoviesList extends ActionBarActivity {
     private String ADD_COMMENT_SERVICE = AppConstants.LINK_RECOMMENDATION;
     private String regId="";
     private String recId;
-    ArrayList<String> idList=new ArrayList<>();
+    String subTitle;
+    private ArrayList<String> arrayListValue=new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,7 +95,7 @@ public class LinkMoviesList extends ActionBarActivity {
         ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(LinkMoviesList.this, "movie_pref", 0);
         movieDetails=complexPreferences.getObject("selected_movie", MovieDetails.class);
         headerText= (TextView) findViewById(R.id.headerText);
-Intent i=getIntent();
+        Intent i=getIntent();
         recId=i.getStringExtra("rec_id");
         AdvancedSpannableString advancedSpannableString=new AdvancedSpannableString("Link "+movieDetails.movieName+" to:");
         advancedSpannableString.setColor(Color.parseColor("#ffffff"), movieDetails.movieName);
@@ -117,11 +120,24 @@ Intent i=getIntent();
             @Override
             public void onClick(View v) {
                 //TODO
+                try{
 
+                StringBuffer stringBuffer=new StringBuffer();
+                for(int i=0;i<drawerTitleList.size();i++){
+                    if(drawerTitleList.get(i).isCheckedValue==true){
+                        stringBuffer.append(drawerTitleList.get(i).list_id+", ");
+                    }
+                }
+                    subTitle=stringBuffer.toString();
+                subTitle=subTitle.substring(0, subTitle.length() - 2);
 
-//            Toast.makeText(LinkMoviesList.this,subTitle+"",Toast.LENGTH_LONG).show();
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
 
-                postComment();
+                if(subTitle.length()!=0) {
+                    postComment();
+                }
             }
         });
         getMoviesList();
@@ -160,6 +176,8 @@ Intent i=getIntent();
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+
+
                 moviesListAdapter=new MoviesListAdapter(LinkMoviesList.this,moviesList);
                 ViewGroup header = (ViewGroup) getLayoutInflater().inflate(R.layout.footer_view, movieList, false);
                 ViewGroup emptyView = (ViewGroup) getLayoutInflater().inflate(R.layout.empty_view, movieList, false);
@@ -188,11 +206,11 @@ Intent i=getIntent();
     public class MoviesListAdapter extends BaseAdapter {
 
         Context context;
-        ArrayList<ListDetail> drawerTitleList;
+
         ArrayList<ListDetail> arraylist;
-        public MoviesListAdapter(Context context, ArrayList<ListDetail> drawerTitleList) {
+        public MoviesListAdapter(Context context, ArrayList<ListDetail> drawerTitleListValue) {
             this.context = context;
-            this.drawerTitleList = drawerTitleList;
+            drawerTitleList = drawerTitleListValue;
             arraylist = new ArrayList<ListDetail>();
             arraylist.addAll(drawerTitleList);
 
@@ -214,7 +232,7 @@ Intent i=getIntent();
         public class ViewHolder {
             TextView movieTitle,number;
             ImageView first,second,third,movieImage;
-            CheckBox extra;
+            ImageView extra;
         }
 
         public View getView(final int position, View convertView, ViewGroup parent) {
@@ -231,35 +249,26 @@ Intent i=getIntent();
                 holder.second=(ImageView)convertView.findViewById(R.id.second);
                 holder.third=(ImageView)convertView.findViewById(R.id.third);
                 holder.movieImage=(ImageView)convertView.findViewById(R.id.movieImage);
-                holder.extra= (CheckBox) convertView.findViewById(R.id.extra);
+                holder.extra= (ImageView) convertView.findViewById(R.id.extra);
                 convertView.setTag(holder);
             } else {
                 holder = (ViewHolder) convertView.getTag();
             }
 
             holder.movieTitle.setText(drawerTitleList.get(position).list_name);
-            holder.number.setText(drawerTitleList.get(position).list_rec_count);
-            holder.extra.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                @Override
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    if(isChecked){
-                        idList.add(drawerTitleList.get(position).list_id);
-                        if(idList.size()==0){
-                            txtLinkRecommandation.setBackgroundColor(Color.parseColor("#bbbbbb"));
-                        } else{
-                            txtLinkRecommandation.setBackgroundColor(Color.parseColor("#215d8e"));
-                        }
 
-                    }else {
-                        idList.remove(drawerTitleList.get(position).list_id);
-                        if(idList.size()==0){
-                            txtLinkRecommandation.setBackgroundColor(Color.parseColor("#bbbbbb"));
-                        } else{
-                            txtLinkRecommandation.setBackgroundColor(Color.parseColor("#215d8e"));
-                        }
-                    }
-                }
-            });
+            holder.number.setText(drawerTitleList.get(position).list_rec_count);
+            if (drawerTitleList.get(position).isCheckedValue==true) {
+                holder.extra.setImageResource(R.drawable.square_check);
+                holder.extra.setTag("active");
+            } else {
+                holder.extra.setImageResource(R.drawable.square);
+                holder.extra.setTag("deactive");
+            }
+
+
+
+
 //            StringBuffer stringBuffer=new StringBuffer();
 //            for(int i=0;i<drawerTitleList.get(position).generationArrayList.size();i++){
 //                stringBuffer.append(drawerTitleList.get(position).generationArrayList.get(i).generation+", ");
@@ -288,15 +297,50 @@ Intent i=getIntent();
                     .placeholder(R.drawable.placeholder)
                     .centerCrop()
                     .into(holder.third);
+            holder.extra.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String tag = holder.extra.getTag().toString();
+                    if (tag.equalsIgnoreCase("active")) { // uncheck checkbox, add
+                        arrayListValue.remove(drawerTitleList.get(position).list_id);
+
+                        drawerTitleList.get(position).isCheckedValue = false;
+                        holder.extra.setImageResource(R.drawable.square);
+                        holder.extra.setTag("deactive");
+                    } else { // check checkbox, remove
+                        arrayListValue.add(drawerTitleList.get(position).list_id);
+                        holder.extra.setImageResource(R.drawable.square_check);
+                        holder.extra.setTag("active");
+                        drawerTitleList.get(position).isCheckedValue = true;
+                    }
+                    if(arrayListValue.size()>0){
+                        txtLinkRecommandation.setBackgroundResource(R.drawable.button_link_selector);
+                    } else {
+                        txtLinkRecommandation.setBackgroundResource(R.drawable.button_new_list_selector);
+                    }
+                }
+            });
 
             convertView.setOnClickListener( new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(LinkMoviesList.this, "movie_pref", 0);
-//                    complexPreferences.putObject("selected_movie",drawerTitleList.get(position));
-//                    complexPreferences.commit();
-//                    Intent intent=new Intent(LinkMoviesList.this,AddCommentActivity.class);
-//                    startActivity(intent);
+                    String tag = holder.extra.getTag().toString();
+                    if (tag.equalsIgnoreCase("active")) { // uncheck checkbox, add
+                        arrayListValue.remove(drawerTitleList.get(position).list_id);
+                        drawerTitleList.get(position).isCheckedValue=false;
+                        holder.extra.setImageResource(R.drawable.square);
+                        holder.extra.setTag("deactive");
+                    } else { // check checkbox, remove
+                        arrayListValue.add(drawerTitleList.get(position).list_id);
+                        holder.extra.setImageResource(R.drawable.square_check);
+                        holder.extra.setTag("active");
+                        drawerTitleList.get(position).isCheckedValue=true;
+                    }
+                    if(arrayListValue.size()>0){
+                        txtLinkRecommandation.setBackgroundResource(R.drawable.button_link_selector);
+                    } else {
+                        txtLinkRecommandation.setBackgroundResource(R.drawable.button_new_list_selector);
+                    }
                 }
             });
             return convertView;
@@ -366,15 +410,21 @@ Intent i=getIntent();
                     // Making HTTP request
                     // check for request method
                     List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-                    StringBuffer stringBuffer=new StringBuffer();
-                    for(int i=0;i<idList.size();i++){
-                        stringBuffer.append(idList.get(i)+", ");
+                    try{
+                        StringBuffer stringBuffer=new StringBuffer();
+                        for(int i=0;i<drawerTitleList.size();i++){
+                            if(drawerTitleList.get(i).isCheckedValue==true){
+                                stringBuffer.append(drawerTitleList.get(i).list_id+", ");
+                            }
+                        }
+                        subTitle=stringBuffer.toString();
+                        subTitle=subTitle.substring(0, subTitle.length() - 2);
+                    } catch (Exception e){
+                        e.printStackTrace();
                     }
-                    String subTitle=stringBuffer.toString();
-                    subTitle=subTitle.substring(0, subTitle.length() - 2);
+
                     nameValuePairs.add(new BasicNameValuePair("list_id",subTitle+""));
                     nameValuePairs.add(new BasicNameValuePair("movie_rec_id",recId+""));
-
                     if (method.equals("POST")) {
                         // request method is POST
                         // defaultHttpClient
@@ -409,22 +459,22 @@ Intent i=getIntent();
 
                 } catch (HttpHostConnectException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (SocketException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (SocketTimeoutException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (ConnectTimeoutException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 }
 
                 return null;
@@ -439,7 +489,7 @@ Intent i=getIntent();
 
                     String responseCode=jsonObject.getString("response_code");
                     if(responseCode.equalsIgnoreCase("201")){
-                        idList.clear();
+
                         Intent intent=new Intent(LinkMoviesList.this,MainActivity.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);

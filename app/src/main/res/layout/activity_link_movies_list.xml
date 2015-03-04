@@ -33,7 +33,7 @@
         <RelativeLayout
 
             android:layout_alignParentBottom="true"
-            android:background="#bbbbbb"
+            android:background="@drawable/button_new_list_selector"
             android:padding="14dp"
 
             android:id="@+id/txtLinkRecommandation"

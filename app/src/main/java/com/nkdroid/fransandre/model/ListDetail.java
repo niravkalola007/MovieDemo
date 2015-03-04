@@ -24,5 +24,8 @@ public class ListDetail {
     public String list_added_ago;
     @SerializedName("movie_recommendations")
     public ArrayList<Avatar> movie_recommendations;
+    public boolean isCheckedValue=false;
+
+
 
 }

@@ -10,6 +10,8 @@
     <drawable name="white">#ffffff</drawable>
     <drawable name="focused">#ff5500</drawable>
     <drawable name="selected">#FF00FF</drawable>
+
+
     <color name="selected_checkbox">#96d1ac</color>
     <color name="text_color_default">#00000C</color>
     <color name="text_color_inverse">#FFFFFF</color>
@@ -18,4 +20,8 @@
     <color name="list_row_pressed_bg">#dddddddd</color>
     <color name="list_row_selected_bg">#dddddddd</color>
 
+    <drawable name="normal_blue">#4476a0</drawable>
+    <drawable name="blue_pressed">#2C6DA3</drawable>
+    <drawable name="normal_grey">#bbb</drawable>
+    <drawable name="grey_pressed">#aaa</drawable>
 </resources>

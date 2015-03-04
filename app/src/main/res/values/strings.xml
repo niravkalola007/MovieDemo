@@ -8,5 +8,7 @@
     <string name="drawer_close">close</string>
     <string name="title_activity_add_comment">AddCommentActivity</string>
     <string name="title_activity_link_movies_list">LinkMoviesList</string>
+    <string name="title_activity_button_new_list_selector">button_new_list_selector</string>
+    <string name="title_activity_button_new_list_selectors">button_new_list_selectors</string>
 
 </resources>

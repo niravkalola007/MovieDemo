@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/txtFooterAddList"
         android:layout_margin="16dp"
-        android:background="#bbb"
+        android:background="@drawable/button_new_list_selector"
 
         android:text="    +New List     "
         android:layout_width="wrap_content"
