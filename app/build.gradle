@@ -24,4 +24,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.github.bumptech.glide:glide:3.5.1'
     compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.github.dmytrodanylyk.shadow-layout:library:1.0.2'
+    compile 'com.sothree.slidinguppanel:library:3.0.0'
 }

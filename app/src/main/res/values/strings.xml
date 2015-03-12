@@ -10,5 +10,7 @@
     <string name="title_activity_link_movies_list">LinkMoviesList</string>
     <string name="title_activity_button_new_list_selector">button_new_list_selector</string>
     <string name="title_activity_button_new_list_selectors">button_new_list_selectors</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_send_list">SendListActivity</string>
 
 </resources>

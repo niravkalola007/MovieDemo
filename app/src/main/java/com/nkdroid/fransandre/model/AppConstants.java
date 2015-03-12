@@ -9,5 +9,6 @@ public class AppConstants {
     public static  final String ADD_COMMENTS="http://fransandre.com/flixlist/rev3/movies/save_recommendation.php";
     public static  final String LINK_RECOMMENDATION="http://fransandre.com/flixlist/rev3/movies/link_recommendation.php";
     public static  final String LIST="http://fransandre.com/flixlist/rev3/lists/demo_lists.php";
+
 }
 

@@ -2,6 +2,7 @@
 <resources>
 
 
+    <!--<color name="primaryColor">#6b9c6c</color>-->
     <color name="primaryColor">#6b9c6c</color>
     <color name="primaryColorDark">#6b9c6c</color>
     <color name="colorAccent">#FF4081</color>
@@ -24,4 +25,11 @@
     <drawable name="blue_pressed">#2C6DA3</drawable>
     <drawable name="normal_grey">#bbb</drawable>
     <drawable name="grey_pressed">#aaa</drawable>
+
+
+
+    <color name="blue_dark">#4D8C4E</color>
+    <color name="blue">#6b9c6c</color>
+    <color name="background">#ff333333</color>
+    <color name="shadow">#AA000000</color>
 </resources>
