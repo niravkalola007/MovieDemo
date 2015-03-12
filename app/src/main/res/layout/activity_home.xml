@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.nkdroid.fransandre.HomeActivity">
+
+    <ImageView
+        android:id="@+id/slider"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_slider"/>
+    <LinearLayout
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+
+            android:textStyle="bold"
+            android:gravity="center"
+            android:text="Movies"
+            android:textSize="40sp"
+            android:textColor="@color/primaryColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.dd.ShadowLayout
+            android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:sl_shadowRadius="10dp"
+            app:sl_shadowColor="@color/shadow"
+            app:sl_dx="0dp"
+            app:sl_dy="0dp"
+            app:sl_cornerRadius="150dp">
+
+            <ImageButton
+
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_star"
+                android:background="@drawable/fab_selector"
+                tools:ignore="ContentDescription"/>
+        </com.dd.ShadowLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

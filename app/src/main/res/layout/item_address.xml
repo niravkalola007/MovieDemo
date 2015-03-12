@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp" >
+
+    <com.wm.customviews.CustomTextview
+        android:id="@+id/txt_address1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <com.wm.customviews.CustomTextview
+        android:id="@+id/txt_address2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:visibility="gone" />
+
+    <com.wm.customviews.CustomTextview
+        android:id="@+id/txt_landmark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:visibility="gone"
+        android:text="LandMark"
+        android:textColor="#000000"
+        android:textSize="22sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <com.wm.customviews.CustomTextview
+            android:id="@+id/txt_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="city"
+            android:textColor="#b0b0b0"
+            android:textSize="20sp" />
+
+        <com.wm.customviews.CustomTextview
+            android:id="@+id/txt_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="state"
+            android:textColor="#b0b0b0"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <com.wm.customviews.CustomTextview
+            android:id="@+id/txt_country"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="country"
+            android:textColor="#b0b0b0"
+            android:textSize="18sp" />
+
+        <com.wm.customviews.CustomTextview
+            android:id="@+id/txt_pincode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center"
+            android:text="pincode"
+            android:textColor="#b0b0b0"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>
