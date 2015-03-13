@@ -31,5 +31,5 @@
     <color name="blue_dark">#4D8C4E</color>
     <color name="blue">#6b9c6c</color>
     <color name="background">#ff333333</color>
-    <color name="shadow">#AA000000</color>
+    <color name="shadow">#50000000</color>
 </resources>

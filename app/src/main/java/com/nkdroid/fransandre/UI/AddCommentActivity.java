@@ -1,12 +1,10 @@
-package com.nkdroid.fransandre;
+package com.nkdroid.fransandre.UI;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
-import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,11 +18,11 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.nkdroid.fransandre.R;
 import com.nkdroid.fransandre.model.AppConstants;
 import com.nkdroid.fransandre.model.ComplexPreferences;
 import com.nkdroid.fransandre.model.MovieDetails;
@@ -40,7 +38,6 @@ import org.apache.http.conn.ConnectTimeoutException;
 import org.apache.http.conn.HttpHostConnectException;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -212,22 +209,22 @@ public class AddCommentActivity extends ActionBarActivity {
 
                 } catch (HttpHostConnectException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (SocketException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (SocketTimeoutException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (ConnectTimeoutException e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("Exception in doInBackground - Contact Us===> ",e.toString());
+
                 }
 
                 return null;

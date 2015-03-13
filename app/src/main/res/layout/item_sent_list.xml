@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:padding="16dp"
     android:layout_height="match_parent">
+
+
+    <com.dd.ShadowLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:sl_shadowRadius="8dp"
+        app:sl_dx="2dp"
+        app:sl_dy="2dp"
+        app:sl_shadowColor="@color/shadow">
+
+        <LinearLayout
+            android:paddingTop="32dp"
+            android:paddingBottom="32dp"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <TextView
+                android:id="@+id/title"
+                android:textSize="22sp"
+                android:textColor="#494949"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+
+                android:layout_height="match_parent">
+            </TextView>
+
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/one"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/placeholder"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+                <ImageView
+                    android:id="@+id/two"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/placeholder"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+                <ImageView
+                    android:id="@+id/three"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/placeholder"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+                <ImageView
+                    android:id="@+id/four"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/placeholder"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp" />
+            </LinearLayout>
+        </LinearLayout>
+</com.dd.ShadowLayout>
 
 </LinearLayout>
