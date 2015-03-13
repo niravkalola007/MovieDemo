@@ -9,7 +9,6 @@ import java.util.ArrayList;
  */
 public class ListDetail {
 
-
     @SerializedName("list_id")
     public String list_id;
     @SerializedName("list_name")

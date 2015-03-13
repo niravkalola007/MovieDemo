@@ -258,6 +258,7 @@ public class LinkMoviesList extends ActionBarActivity {
             holder.movieTitle.setText(drawerTitleList.get(position).list_name);
 
             holder.number.setText(drawerTitleList.get(position).list_rec_count);
+
             if (drawerTitleList.get(position).isCheckedValue==true) {
                 holder.extra.setImageResource(R.drawable.square_check);
                 holder.extra.setTag("active");
@@ -303,7 +304,6 @@ public class LinkMoviesList extends ActionBarActivity {
                     String tag = holder.extra.getTag().toString();
                     if (tag.equalsIgnoreCase("active")) { // uncheck checkbox, add
                         arrayListValue.remove(drawerTitleList.get(position).list_id);
-
                         drawerTitleList.get(position).isCheckedValue = false;
                         holder.extra.setImageResource(R.drawable.square);
                         holder.extra.setTag("deactive");
